@@ -1,0 +1,45 @@
+version: 2
+
+models:
+    - name: dim_date
+      columns:              
+          - name: date_id
+            tests:
+                - not_null
+                - unique
+    - name: dim_employee
+      columns:              
+          - name: employee_id
+            tests:
+                - not_null
+                - unique
+    - name: dim_employer
+      columns:              
+          - name: employer_id
+            tests:
+                - not_null
+                - unique
+    - name: dim_facility
+      columns:              
+          - name: facility_id
+            tests:
+                - not_null
+                - unique
+    - name: dim_insurer
+      columns:              
+          - name: insurer_id
+            tests:
+                - not_null
+                - unique
+    - name: dim_provider
+      columns:              
+          - name: provider_id
+            tests:
+                - not_null
+                - unique
+    - name: dim_service
+      columns:              
+          - name: service_id
+            tests:
+                - not_null
+                - unique
