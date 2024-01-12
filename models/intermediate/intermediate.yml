@@ -1,0 +1,20 @@
+version: 2
+
+models:
+    - name: int_detail_union
+      columns:              
+          - name: bill_detail_id
+            tests:
+                - not_null
+                - unique
+    - name: int_header_union
+      columns:              
+          - name: bill_id
+            tests:
+                - not_null
+                - unique
+    - name: int_provider_consolidate
+      columns:              
+          - name: provider_fein
+            tests:
+                - unique

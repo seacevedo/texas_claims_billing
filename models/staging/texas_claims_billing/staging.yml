@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+ - name: texas_claims_src
+   database: "FIVETRAN_DATABASE" 
+   schema: "TEXAS_CLAIMS_BILLING_GD" 
+   tables:
+    - name: INST_BILLING_HEADER
+    - name: INST_BILLING_DETAIL
+    - name: PROF_BILLING_HEADER
+    - name: PROF_BILLING_DETAIL
+
+models:
+  - name: stg_inst_billing_header
+    columns:              
+      - name: bill_id
+        tests:
+            - not_null
+            - unique
+  - name: stg_inst_billing_detail
+    columns:              
+      - name: bill_detail_id
+        tests:
+            - not_null
+            - unique
+  - name: stg_prof_billing_header
+    columns:              
+      - name: bill_id
+        tests:
+            - not_null
+            - unique
+  - name: stg_prof_billing_detail
+    columns:              
+      - name: bill_detail_id
+        tests:
+            - not_null
+            - unique
