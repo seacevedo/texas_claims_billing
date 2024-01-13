@@ -16,7 +16,13 @@ with prof_billing_detail as (
     cast(HCPCS_LINE_PROCEDURE_PAID as varchar) as HCPCS_LINE_PROCEDURE_PAID,
     cast(PROCEDURE_DESCRIPTION as varchar) as PROCEDURE_DESCRIPTION
     from {{ source('texas_claims_src', 'PROF_BILLING_DETAIL') }}
+),
+
+unique_source as (
+    select *, row_number() over(partition by BILL_DETAIL_ID order by BILL_SELECTION_DATE DESC) as row_number
+    from prof_billing_detail
 )
 
-select *, current_timestamp() as transformed_timestamp 
-from prof_billing_detail
+select * exclude row_number, current_timestamp() as transformed_timestamp 
+from unique_source
+where row_number = 1

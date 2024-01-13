@@ -46,7 +46,13 @@ with prof_billing_header as (
     cast(EMPLOYEE_MARITAL_STATUS_CODE as char) as EMPLOYEE_MARITAL_STATUS_CODE, 
     to_date(cast(EMPLOYEE_DATE_OF_INJURY as varchar), 'yyyy-mm-dd hh:mi:ss.ff9') as EMPLOYEE_DATE_OF_INJURY 
     from {{ source('texas_claims_src', 'PROF_BILLING_HEADER') }}
+),
+
+unique_source as (
+    select *, row_number() over(partition by BILL_ID order by BILL_SELECTION_DATE DESC) as row_number
+    from prof_billing_header
 )
 
-select *, current_timestamp() as transformed_timestamp 
-from prof_billing_header
+select * exclude row_number, current_timestamp() as transformed_timestamp 
+from unique_source
+where row_number = 1

@@ -17,3 +17,4 @@ select
   dayname(BILL_SELECTION_DATE) as DAY_NAME,
   current_timestamp() as transformed_timestamp
 from unique_dates 
+order by BILL_SELECTION_DATE

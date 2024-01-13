@@ -1,6 +1,5 @@
-with unique_billing_provider as (
+with billing_provider as (
     select
-    distinct 
     BILL_ID,
     BILLING_PROVIDER_FEIN as PROVIDER_FEIN,
     BILLING_PROVIDER_FIRST_NAME as PROVIDER_FIRST_NAME,
@@ -14,9 +13,8 @@ with unique_billing_provider as (
     from {{ ref('int_header_union') }}
 ),
 
-unique_rendering_provider as (
+rendering_provider as (
     select
-    distinct 
     BILL_ID,
     RENDERING_BILL_PROVIDER_FEIN as PROVIDER_FEIN,
     RENDERING_BILL_PROVIDER_FIRST_NAME as PROVIDER_FIRST_NAME,
@@ -30,9 +28,8 @@ unique_rendering_provider as (
     from {{ ref('int_header_union') }}
 ),
 
-unique_referring_provider as (
-    select
-    distinct 
+referring_provider as (
+    select 
     BILL_ID,
     REFERRING_PROVIDER_FEIN as PROVIDER_FEIN,
     REFERRING_PROVIDER_FIRST_NAME as PROVIDER_FIRST_NAME,
@@ -44,10 +41,23 @@ unique_referring_provider as (
     null as PROVIDER_COUNTRY,
     'Referring' as PROVIDER_TYPE
     from {{ ref('int_header_union') }}
+),
+
+union_provider as (
+    select * from billing_provider
+    union 
+    select * from rendering_provider
+    union 
+    select * from referring_provider
+),
+
+unique_provider as (
+    select *, row_number() over(partition by PROVIDER_FEIN order by PROVIDER_FIRST_NAME) as row_number
+    from union_provider
 )
 
-select * from unique_billing_provider
-union 
-select * from unique_rendering_provider
-union 
-select * from unique_referring_provider
+select * exclude row_number, current_timestamp() as transformed_timestamp
+from unique_provider
+where row_number = 1
+
+
