@@ -108,9 +108,19 @@ inst_billing_header as (
     EMPLOYEE_MARITAL_STATUS_CODE, 
     EMPLOYEE_DATE_OF_INJURY
     from {{ref('stg_inst_billing_header')}}
+),
+
+unique_header as (
+    select * from prof_billing_header
+    union 
+    select * from inst_billing_header
+),
+
+unique_detail as (
+    select *, row_number() over(partition by BILL_ID order by BILL_SELECTION_DATE) as row_number
+    from unique_header
 )
 
-
-select * from prof_billing_header
-union 
-select * from inst_billing_header
+select * exclude row_number, current_timestamp() as transformed_timestamp
+from unique_detail
+where row_number = 1

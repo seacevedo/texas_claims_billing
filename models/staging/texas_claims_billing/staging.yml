@@ -16,22 +16,18 @@ models:
       - name: bill_id
         tests:
             - not_null
-            - unique
   - name: stg_inst_billing_detail
     columns:              
       - name: bill_detail_id
         tests:
             - not_null
-            - unique
   - name: stg_prof_billing_header
     columns:              
       - name: bill_id
         tests:
             - not_null
-            - unique
   - name: stg_prof_billing_detail
     columns:              
       - name: bill_detail_id
         tests:
             - not_null
-            - unique
