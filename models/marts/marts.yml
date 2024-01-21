@@ -43,3 +43,22 @@ models:
             tests:
                 - not_null
                 - unique
+    - name: obt_claims_billing
+      columns:
+        - name: BILL_SELECTION_DATE
+        - name: YEAR
+        - name: YEAR_WEEK
+        - name: YEAR_DAY
+        - name: FISCAL_YEAR
+        - name: FISCAL_QTR
+        - name: MONTH
+        - name: MONTH_NAME
+        - name: WEEK_DAY
+        - name: DAY_NAME
+        - name: INSURER_ID
+        - name: INSURER_FEIN
+        - name: TOTAL_AMOUNT_PAID_PER_DAY
+        - name: TOTAL_CHARGES_PER_DAY
+        - name: TOTAL_DAYS_UNITS_BILLED_PER_DAY
+        - name: TOTAL_DAYS_UNITS_PAID_PER_DAY
+        - name: transformed_timestamp
