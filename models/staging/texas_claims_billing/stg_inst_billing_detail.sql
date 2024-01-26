@@ -1,3 +1,5 @@
+
+
 with inst_billing_detail as (
     select 
     cast(BILL_DETAIL_ID as varchar) as BILL_DETAIL_ID,
