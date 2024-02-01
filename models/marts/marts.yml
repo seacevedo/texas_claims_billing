@@ -2,656 +2,657 @@ version: 2
 
 models:
   - name: dim_date
-    description: ""
+    description: "dimension table which contains unique dates of service on a bill"
     columns:
       - name: date_id
         data_type: varchar
-        description: ""
+        description: "primary key, one per date"
         tests:
           - not_null
           - unique
       - name: bill_selection_date
         data_type: date
-        description: ""
+        description: "Bill Selection Date is a date field common to bill and bill line item records. It is usually the earliest date of service on a bill."
 
       - name: year
         data_type: number
-        description: ""
+        description: "Year date occurs in"
 
       - name: year_week
         data_type: number
-        description: ""
+        description: "number of weeks from the start of the year to date"
 
       - name: year_day
         data_type: number
-        description: ""
+        description: "number of days from the start of the year to date"
 
       - name: fiscal_year
         data_type: number
-        description: ""
+        description: "fiscal year during which the date occurs"
 
       - name: fiscal_qtr
         data_type: number
-        description: ""
+        description: "fiscal quarter during which the date occurs"
 
       - name: month
         data_type: number
-        description: ""
+        description: "month during which the date occurs"
 
       - name: month_name
         data_type: varchar
-        description: ""
+        description: "the name of the month the date occurs in"
 
       - name: week_day
         data_type: number
-        description: ""
+        description: "the id of the day within the week the date occurs in"
 
       - name: day_name
         data_type: varchar
-        description: ""
+        description: "the name of the day within the week the date occurs in"
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: dim_employee
-    description: ""
+    description: "dimensional table which contains unique employees who requested medical services"
     columns:
       - name: employee_id
         data_type: varchar
-        description: ""
+        description: "primary key which corresponds to a unique employee"
         tests:
           - not_null
           - unique
       - name: employee_mailing_city
         data_type: varchar
-        description: ""
+        description: "DN# 48 - The city name of the injured worker's mailing address."
 
       - name: employee_mailing_state_code
         data_type: varchar
-        description: ""
+        description: "DN# 49 - The two-character state code of the injured worker's mailing address."
 
       - name: employee_mailing_postal_code
         data_type: varchar
-        description: ""
+        description: "DN# 50 - The zip code of the injured worker's mailing address."
 
       - name: employee_mailing_country
         data_type: varchar
-        description: ""
+        description: "DN# 155 - A three-character code indicating the country of the injured worker's mailing address."
 
       - name: employee_date_of_birth
         data_type: date
-        description: ""
+        description: "DN# 52 - The month and year the injured worker was born. Day redacted."
 
       - name: employee_gender_code
         data_type: varchar
-        description: ""
+        description: "DN# 53 - Indicates the sex of the injured worker: M=Male F=Female U=Unknown"
 
       - name: employee_marital_status_code
         data_type: varchar
-        description: ""
+        description: "DN# 54 - Indicates the marital status of the injured worker: I=Single K=Unknown M=Married S=Separated U=Widowed"
 
       - name: employee_date_of_injury
         data_type: date
-        description: ""
+        description: "DN# 31 - The month and year the accident occurred. Day redacted."
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: dim_employer
-    description: ""
+    description: "dimensional table of unique employers who help provide health insurance to their employees"
     columns:
       - name: employer_id
         data_type: varchar
-        description: ""
+        description: "primary key which corresponds to a unique employer"
         tests:
           - not_null
           - unique
       - name: employer_fein
         data_type: varchar
-        description: ""
+        description: "DN# 16 - The federal identification number of the employer where the employee was employed at the time of the injury."
 
       - name: employer_physical_city
         data_type: varchar
-        description: ""
+        description: "DN# 21 - The city name of the facility where the injured worker was employed at the time of the injury."
 
       - name: employer_physical_state_code
         data_type: varchar
-        description: ""
+        description: "DN# 22 - The two-character state code of the facility where the injured worker was employed at the time of the injury."
 
       - name: employer_physical_postal
         data_type: varchar
-        description: ""
+        description: "DN# 23 - The zip code of the facility where the injured worker was employed at the time of the injury."
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: dim_facility
-    description: ""
+    description: "dimensional table of unique facilities that render medical services"
     columns:
       - name: facility_id
         data_type: varchar
-        description: ""
+        description: "primary key, denotes unique facility"
         tests:
           - not_null
           - unique
       - name: facility_fein
         data_type: varchar
-        description: ""
+        description: "DN# 679 - The federal identification number of the facility where the medical services were rendered."
 
       - name: facility_name
         data_type: varchar
-        description: ""
+        description: "DN# 678 - The name of the facility where the medical services were rendered. Mandatory for SV1 bills."
 
       - name: facility_address
         data_type: varchar
-        description: ""
+        description: "DN# 684 - The first line in the facility's address."
 
       - name: facility_city
         data_type: varchar
-        description: ""
+        description: "DN# 686 - The city name of the facility's address."
 
       - name: facility_state_code
         data_type: varchar
-        description: ""
+        description: "DN# 687 - The two-character state code of the facility's address."
 
       - name: facility_postal_code
         data_type: varchar
-        description: ""
+        description: "DN# 688 - The zip code of the facility's address."
 
       - name: facility_country_code
         data_type: varchar
-        description: ""
+        description: "DN# 689 - A three-character code indicating the country of the facility's mailing address."
 
       - name: facility_code
         data_type: varchar
-        description: ""
+        description: "DN# 504 - Identifies the kind of facility where treatment was rendered."
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: dim_insurer
-    description: ""
+    description: "dimensional table containing unique insurers"
     columns:
       - name: insurer_id
         data_type: varchar
-        description: ""
+        description: "primary key, denotes unique insurer"
         tests:
           - not_null
           - unique
       - name: insurer_fein
         data_type: varchar
-        description: ""
+        description: "DN# 6 - The federal identification number of the carrier or self-insured assuming responsibility for workers' compensation claims."
 
       - name: insurer_postal_code
         data_type: varchar
-        description: ""
+        description: "DN# 616 - The zip code of the carrier or self-insured's specific business site."
 
       - name: date_insurer_received_bill
         data_type: date
-        description: ""
+        description: "DN# 511 - The calendar date the insurer received the bill from the provider."
 
       - name: date_insurer_paid_bill
         data_type: date
-        description: ""
+        description: "DN# 512 - The calendar date the insurer or financially responsible party paid the bill or received credit from the provider."
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: dim_provider
-    description: ""
+    description: "dimensional tables containing unique healthcare providers. Each provider has a tag denoting whether they are the rendering, referring, or billing provider"
     columns:
       - name: provider_id
         data_type: varchar
-        description: ""
+        description: "primary key denoting unique healthcare provider"
         tests:
           - not_null
           - unique
       - name: provider_fein
         data_type: varchar
-        description: ""
+        description: " The federal tax identification number of the provider."
 
       - name: provider_first_name
         data_type: varchar
-        description: ""
+        description: "The given name of the provider."
 
       - name: provider_last_name
         data_type: varchar
-        description: ""
+        description: "The surname of the provider."
 
       - name: provider_address
         data_type: varchar
-        description: ""
+        description: "The first line of the provider's address."
 
       - name: provider_city
         data_type: varchar
-        description: ""
+        description: " The city name of the provider's address."
 
       - name: provider_state_code
         data_type: varchar
-        description: ""
+        description: " The two-character state code of the provider's address."
 
       - name: provider_postal_code
         data_type: varchar
-        description: ""
+        description: "The zip code in the provider's address."
 
       - name: provider_country
         data_type: varchar
-        description: ""
+        description: "A three-character code indicating the country of the provider's mailing address."
 
       - name: provider_type
         data_type: varchar
-        description: ""
+        description: "The type of provider: can be rendering, referring, or billing"
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: dim_service
     description: ""
     columns:
       - name: service_id
         data_type: varchar
-        description: ""
+        description: "primary key, denotes unique service rendered"
         tests:
           - not_null
           - unique
       - name: service_line_from_date
         data_type: date
-        description: ""
+        description: "DN# 605 - The starting date that services were performed for the line item."
 
       - name: service_line_to_date
         data_type: date
-        description: ""
+        description: "DN# 605 - The ending date that services were performed for the line item."
 
       - name: treatment_line_authorization_number
         data_type: varchar
-        description: ""
+        description: "DN# 738 - Defaults to the Treatment Authorization Number (DN581 at the bill level) unless a data element is transmitted in this field. Y = reported, N = not reported."
 
       - name: hcpcs_line_procedure_billed
         data_type: varchar
-        description: ""
+        description: "DN# 714 - Identifies the treatment that was rendered and billed. HCPCS is the abbreviation for Health Care Financing Administration's Common Procedure Coding System. HCPCS codes include Level 1 CPT procedure codes."
 
       - name: hcpcs_line_procedure_paid
         data_type: varchar
-        description: ""
+        description: "DN# 726 - Identifies the treatment that was rendered and paid."
 
       - name: procedure_description
         data_type: varchar
-        description: ""
+        description: "DN# 551 - Free form text describing the treatment rendered."
 
       - name: admission_hour
         data_type: time
-        description: ""
+        description: "DN# 622 - The hour the claimant was admitted to the facility. Format: HH:MM:SS"
 
       - name: admission_date
         data_type: date
-        description: ""
+        description: "DN# 513 - The calendar date the claimant was admitted to the facility."
 
       - name: admission_type_code
         data_type: varchar
-        description: ""
+        description: "DN# 577 - Identifies the kind of admission: 1 = Emergency 2 = Urgent 3 = Elective 9 = Information not available"
 
       - name: admitting_diagnosis_code
         data_type: varchar
-        description: ""
+        description: "DN# 535 - Identifies the admitting ICD-9 CM or ICD-10 CM code of the bill."
 
       - name: principal_diagnosis_code
         data_type: varchar
-        description: ""
+        description: "DN# 521 - Identifies the primary ICD-9 CM or ICD-10 CM code of the bill."
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: fct_claims_billing
     description: ""
     columns:
       - name: facility_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique facility"
 
       - name: insurer_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique insurer"
 
       - name: employee_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique employee"
 
       - name: employer_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique employer"
 
       - name: provider_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique provider"
 
       - name: service_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique service rendered"
 
       - name: date_id
         data_type: varchar
-        description: ""
+        description: "id that denotes a unique date"
 
       - name: bill_id
         data_type: varchar
-        description: ""
+        description: "Bill ID uniquely identifies a bill and links line items to the bill."
 
       - name: bill_detail_id
         data_type: varchar
-        description: ""
+        description: "Bill Detail ID uniquely identifies a bill line item."
  
       - name: line_number
         data_type: varchar
-        description: ""
+        description: "The number of the line item on the bill."
 
       - name: total_amount_paid_per_line
         data_type: number
-        description: ""
+        description: "DN# 574 - The total dollar amount paid or credited to the line item."
 
       - name: total_charge_per_line
         data_type: number
-        description: ""
+        description: "DN# 552 - The service charge amount for the line item."
 
       - name: days_units_billed
         data_type: number
-        description: ""
+        description: "DN# 554 - The number of services billed for the line item in days or units."
 
       - name: days_units_paid
         data_type: number
-        description: ""
+        description: "DN# 580 - The number of services paid for the line item in days or units."
 
       - name: days_units_code
         data_type: varchar
-        description: ""
+        description: "DN# 553 - Indicates the time or units billed or paid. DA = Days MJ = Minutes UN = Unit"
 
       - name: bill_type
         data_type: varchar
-        description: ""
+        description: "SV1 = Professional Service, SV2 = Institutional (Hospital) Service"
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: obt_claims_billing
     description: ""
     columns:
       - name: bill_selection_date
         data_type: date
-        description: ""
+        description: "Bill Selection Date is a date field common to bill and bill line item records. It is usually the earliest date of service on a bill."
 
       - name: year
         data_type: number
-        description: ""
+        description: "Year date occurs in"
 
       - name: year_week
         data_type: number
-        description: ""
+        description: "number of weeks from the start of the year to date"
 
       - name: year_day
         data_type: number
-        description: ""
+        description: "number of days from the start of the year to date"
 
       - name: fiscal_year
         data_type: number
-        description: ""
+        description: "fiscal year during which the date occurs"
 
       - name: fiscal_qtr
         data_type: number
-        description: ""
+        description: "fiscal quarter during which the date occurs"
 
       - name: month
         data_type: number
-        description: ""
+        description: "month during which the date occurs"
 
       - name: month_name
         data_type: varchar
-        description: ""
+        description: "the name of the month the date occurs in"
 
       - name: week_day
         data_type: number
-        description: ""
+        description: "the id of the day within the week the date occurs in"
 
       - name: day_name
         data_type: varchar
-        description: ""
+        description: "the name of the day within the week the date occurs in"
+
 
       - name: insurer_id
         data_type: varchar
-        description: ""
+        description: "id that denotes a unique insurer"
 
       - name: insurer_fein
         data_type: varchar
-        description: ""
+        description: "DN# 6 - The federal identification number of the carrier or self-insured assuming responsibility for workers' compensation claims."
 
       - name: total_amount_paid_per_day
         data_type: number
-        description: ""
+        description: "The total amount for bills on the current date"
 
       - name: total_charges_per_day
         data_type: number
-        description: ""
+        description: "The total charge for bills on the current date"
 
       - name: total_days_units_billed_per_day
         data_type: number
-        description: ""
+        description: "The total days units billed on the current date"
 
       - name: total_days_units_paid_per_day
         data_type: number
-        description: ""
+        description: "The total days units paid on the current date"
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
   - name: obt_clinical_outcomes
     description: ""
     columns:
       - name: outcome_id
         data_type: varchar
-        description: ""
+        description: "primary key, denotes unique outcome in patient care"
 
       - name: facility_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique facility"
 
       - name: facility_fein
         data_type: varchar
-        description: ""
+        description: "DN# 678 - The federal identification number of the facility where the medical services were rendered."
 
       - name: facility_name
         data_type: varchar
-        description: ""
+        description: "DN# 678 - The name of the facility where the medical services were rendered. Mandatory for SV1 bills."
 
       - name: facility_address
         data_type: varchar
-        description: ""
+        description: "DN# 684 - The first line in the facility's address."
 
       - name: facility_city
         data_type: varchar
-        description: ""
+        description: "DN# 686 - The city name of the facility's address."
 
       - name: facility_state_code
         data_type: varchar
-        description: ""
+        description: "DN# 687 - The two-character state code of the facility's address."
 
       - name: facility_postal_code
         data_type: varchar
-        description: ""
+        description: "DN# 688 - The zip code of the facility's address."
 
       - name: facility_country_code
         data_type: varchar
-        description: ""
+        description: "DN# 689 - A three-character code indicating the country of the facility's mailing address."
 
       - name: facility_code
         data_type: varchar
-        description: ""
+        description: "DN# 504 - Identifies the kind of facility where treatment was rendered."
 
       - name: employee_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique employee"
 
       - name: employee_mailing_city
         data_type: varchar
-        description: ""
+        description: "DN# 48 - The city name of the injured worker's mailing address."
 
       - name: employee_mailing_state_code
         data_type: varchar
-        description: ""
+        description: "DN# 49 - The two-character state code of the injured worker's mailing address."
 
       - name: employee_mailing_postal_code
         data_type: varchar
-        description: ""
+        description: "DN# 50 - The zip code of the injured worker's mailing address."
 
       - name: employee_mailing_country
         data_type: varchar
-        description: ""
+        description: "DN# 155 - A three-character code indicating the country of the injured worker's mailing address."
 
       - name: employee_date_of_birth
         data_type: date
-        description: ""
+        description: "DN# 52 - The month and year the injured worker was born. Day redacted."
 
       - name: employee_gender_code
         data_type: varchar
-        description: ""
+        description: "DN# 53 - Indicates the sex of the injured worker: M=Male F=Female U=Unknown"
 
       - name: employee_marital_status_code
         data_type: varchar
-        description: ""
+        description: "DN# 54 - Indicates the marital status of the injured worker: I=Single K=Unknown M=Married S=Separated U=Widowed"
 
       - name: employee_date_of_injury
         data_type: date
-        description: ""
+        description: "DN# 31 - The month and year the accident occurred. Day redacted."
 
       - name: provider_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique provider"
 
       - name: provider_fein
         data_type: varchar
-        description: ""
+        description: "DN# 629 - The federal tax identification number of the provider."
 
       - name: provider_first_name
         data_type: varchar
-        description: ""
+        description: "DN# 529 - The given name of the provider."
 
       - name: provider_last_name
         data_type: varchar
-        description: ""
+        description: "The surname of the provider."
 
       - name: provider_address
         data_type: varchar
-        description: ""
+        description: "DN# 538 - The first line in the provider's address."
 
       - name: provider_city
         data_type: varchar
-        description: ""
+        description: "DN# 540 - The city name of the provider's address."
 
       - name: provider_state_code
         data_type: varchar
-        description: ""
+        description: "DN# 541 - The two-character state code of the provider's address."
 
       - name: provider_postal_code
         data_type: varchar
-        description: ""
+        description: "DN# 542 - The zip code of the provider's address."
 
       - name: provider_country
         data_type: varchar
-        description: ""
+        description: "DN# 569 - A three-character code indicating the country of the provider's mailing address."
 
       - name: provider_type
         data_type: varchar
-        description: ""
+        description: "The type of provider: can be rendering, referring, or billing"
 
       - name: service_id
         data_type: varchar
-        description: ""
+        description: "id that denotes unique service rendered"
 
       - name: service_line_from_date
         data_type: date
-        description: ""
+        description: "DN# 605 - The starting date that services were performed for the line item."
 
       - name: service_line_to_date
         data_type: date
-        description: ""
+        description: "DN# 605 - The ending date that services were performed for the line item."
 
       - name: treatment_line_authorization_number
         data_type: varchar
-        description: ""
+        description: "DN# 738 - Defaults to the Treatment Authorization Number (DN581 at the bill level) unless a data element is transmitted in this field. Y = reported, N = not reported."
 
       - name: hcpcs_line_procedure_billed
         data_type: varchar
-        description: ""
+        description: "DN# 714 - Identifies the treatment that was rendered and billed. HCPCS is the abbreviation for Health Care Financing Administration's Common Procedure Coding System. HCPCS codes include Level 1 CPT procedure codes."
 
       - name: hcpcs_line_procedure_paid
         data_type: varchar
-        description: ""
+        description: "DN# 726 - Identifies the treatment that was rendered and paid."
 
       - name: procedure_description
         data_type: varchar
-        description: ""
+        description: "DN# 551 - Free form text describing the treatment rendered."
 
       - name: admission_hour
         data_type: time
-        description: ""
+        description: "DN# 622 - The hour the claimant was admitted to the facility. Format: HH:MM:SS"
 
       - name: admission_date
         data_type: date
-        description: ""
+        description: "DN# 513 - The calendar date the claimant was admitted to the facility."
 
       - name: admission_type_code
         data_type: varchar
-        description: ""
+        description: "DN# 577 - Identifies the kind of admission: 1 = Emergency 2 = Urgent 3 = Elective 9 = Information not available"
 
       - name: admitting_diagnosis_code
         data_type: varchar
-        description: ""
+        description: "DN# 535 - Identifies the admitting ICD-9 CM or ICD-10 CM code of the bill."
 
       - name: principal_diagnosis_code
         data_type: varchar
-        description: ""
+        description: "DN# 521 - Identifies the primary ICD-9 CM or ICD-10 CM code of the bill."
 
       - name: date_id
         data_type: varchar
-        description: ""
+        description: "id that denotes a unique date"
 
       - name: bill_selection_date
         data_type: date
-        description: ""
+        description: "Bill Selection Date is a date field common to bill and bill line item records. It is usually the earliest date of service on a bill"
 
       - name: year
         data_type: number
-        description: ""
+        description: "Year date occurs in"
 
       - name: year_week
         data_type: number
-        description: ""
+        description: "number of weeks from the start of the year to date"
 
       - name: year_day
         data_type: number
-        description: ""
+        description: "number of days from the start of the year to date"
 
       - name: fiscal_year
         data_type: number
-        description: ""
+        description: "fiscal year during which the date occurs"
 
       - name: fiscal_qtr
         data_type: number
-        description: ""
+        description: "fiscal quarter during which the date occurs"
 
       - name: month
         data_type: number
-        description: ""
+        description: "month during which the date occurs"
 
       - name: month_name
         data_type: varchar
-        description: ""
+        description: "the name of the month the date occurs in"
 
       - name: week_day
         data_type: number
-        description: ""
+        description: "the id of the day within the week the date occurs in"
 
       - name: day_name
         data_type: varchar
-        description: ""
+        description: "the name of the day within the week the date occurs in"
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+        description: "timestamp of transformation"
