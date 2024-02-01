@@ -16,527 +16,406 @@ models:
     columns:
       - name: bill_id
         data_type: varchar
-        description: "Bill ID uniquely identifies a bill and links line items to the bill."
         tests:
           - not_null
           - unique
+
       - name: bill_selection_date
         data_type: date
-        description: "Bill Selection Date is a date field common to bill and bill line item records. It is usually the earliest date of service on a bill."
 
       - name: bill_type
         data_type: varchar
-        description: "SV2 = Institutional (Hospital) Service"
 
       - name: insurer_fein
         data_type: varchar
-        description: "DN# 6 - The federal identification number of the carrier or self-insured assuming responsibility for workers' compensation claims."
 
       - name: insurer_postal_code
         data_type: varchar
-        description: "DN# 616 - The zip code of the carrier or self-insured's specific business site."
 
       - name: date_insurer_received_bill
         data_type: date
-        description: "DN# 511 - The calendar date the insurer received the bill from the provider."
 
       - name: date_insurer_paid_bill
         data_type: date
-        description: "DN# 512 - The calendar date the insurer or financially responsible party paid the bill or received credit from the provider."
 
       - name: facility_fein
         data_type: varchar
-        description: "DN# 678 - The federal identification number of the facility where the medical services were rendered."
 
       - name: facility_name
         data_type: varchar
-        description: "DN# 678 - The name of the facility where the medical services were rendered. Mandatory for SV1 bills."
 
       - name: facility_address
         data_type: varchar
-        description: "DN# 684 - The first line in the facility's address."
 
       - name: facility_city
         data_type: varchar
-        description: "DN# 686 - The city name of the facility's address."
 
       - name: facility_state_code
         data_type: varchar
-        description: "DN# 687 - The two-character state code of the facility's address."
 
       - name: facility_postal_code
         data_type: varchar
-        description: "DN# 688 - The zip code of the facility's address."
 
       - name: facility_country_code
         data_type: varchar
-        description: "DN# 689 - A three-character code indicating the country of the facility's mailing address."
 
       - name: facility_code
         data_type: varchar
-        description: "DN# 504 - Identifies the kind of facility where treatment was rendered."
 
       - name: employer_fein
         data_type: varchar
-        description: "DN# 16 - The federal identification number of the employer where the employee was employed at the time of the injury."
 
       - name: employer_physical_city
         data_type: varchar
-        description: "DN# 21 - The city name of the facility where the injured worker was employed at the time of the injury."
 
       - name: employer_physical_state_code
         data_type: varchar
-        description: "DN# 22 - The two-character state code of the facility where the injured worker was employed at the time of the injury."
 
       - name: employer_physical_postal
         data_type: varchar
-        description: "DN# 23 - The zip code of the facility where the injured worker was employed at the time of the injury."
 
       - name: billing_provider_fein
         data_type: varchar
-        description: "DN# 629 - The federal tax identification number of the billing provider."
 
       - name: rendering_bill_provider_fein
         data_type: varchar
-        description: "DN# 642 - The federal tax identification number of the rendering bill provider."
 
       - name: rendering_bill_provider_first_name
         data_type: varchar
-        description: "DN# 639 - The given name of the rendering bill provider."
 
       - name: referring_provider_first_name
         data_type: varchar
-        description: "DN# 691 - The given name of the referring provider."
 
       - name: billing_provider_last_name
         data_type: varchar
-        description: "DN# 528 - The surname of the person or full name of an organization receiving payment. It is assumed to be the rendering provider for all services unless a specific rendering provider is identified at the bill or service line levels. If the billing provider is a non-person, a specific individual rendering bill provider may be required by a jurisdiction."
 
       - name: rendering_bill_provider_last_name
         data_type: varchar
-        description: "DN# 638 - The surname of the individual provider actually rendering care. If not present, the billing provider is assumed to be the rendering provider for all services on this bill. If the billing provider was not an individual, a jurisdiction may require a rendering bill provider to be specified."
 
       - name: referring_provider_last_name
         data_type: varchar
-        description: "DN# 690 - The surname of the provider referring claimant for care. Only used when needed to document that a bill results from care provided based on a referral from another provider."
 
       - name: billing_provider_address
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_address
         data_type: varchar
-        description: ""
 
       - name: billing_provider_city
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_city
         data_type: varchar
-        description: ""
 
       - name: billing_provider_state_code
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_state
         data_type: varchar
-        description: ""
 
       - name: billing_provider_postal_code
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_postal
         data_type: varchar
-        description: ""
 
       - name: billing_provider_country
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_country_code
         data_type: varchar
-        description: ""
 
       - name: admission_hour
         data_type: time
-        description: ""
 
       - name: admission_date
         data_type: date
-        description: ""
 
       - name: admission_type_code
         data_type: varchar
-        description: ""
 
       - name: admitting_diagnosis_code
         data_type: varchar
-        description: ""
 
       - name: principal_diagnosis_code
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_city
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_state_code
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_postal_code
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_country
         data_type: varchar
-        description: ""
 
       - name: employee_date_of_birth
         data_type: date
-        description: ""
 
       - name: employee_gender_code
         data_type: varchar
-        description: ""
 
       - name: employee_marital_status_code
         data_type: varchar
-        description: ""
 
       - name: employee_date_of_injury
         data_type: date
-        description: ""
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+
   - name: stg_inst_billing_detail
     description: ""
     columns:
       - name: bill_detail_id
         data_type: varchar
-        description: ""
         tests:
           - not_null
           - unique
+
       - name: bill_id
         data_type: varchar
-        description: ""
         tests:
           - not_null
+
       - name: bill_selection_date
         data_type: date
-        description: ""
 
       - name: line_number
         data_type: varchar
-        description: ""
 
       - name: total_amount_paid_per_line
         data_type: number
-        description: ""
 
       - name: total_charge_per_line
         data_type: number
-        description: ""
 
       - name: days_units_billed
         data_type: number
-        description: ""
 
       - name: days_units_paid
         data_type: number
-        description: ""
 
       - name: days_units_code
         data_type: varchar
-        description: ""
 
       - name: service_line_from_date
         data_type: date
-        description: ""
 
       - name: service_line_to_date
         data_type: date
-        description: ""
 
       - name: treatment_line_authorization_number
         data_type: varchar
-        description: ""
 
       - name: hcpcs_line_procedure_billed
         data_type: varchar
-        description: ""
 
       - name: hcpcs_line_procedure_paid
         data_type: varchar
-        description: ""
 
       - name: procedure_description
         data_type: varchar
-        description: ""
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
+
   - name: stg_prof_billing_header
     description: ""
     columns:
       - name: bill_id
         data_type: varchar
-        description: ""
         tests:
           - not_null
           - unique
+          
       - name: bill_selection_date
         data_type: date
-        description: ""
 
       - name: bill_type
         data_type: varchar
-        description: ""
 
       - name: insurer_fein
         data_type: varchar
-        description: ""
 
       - name: insurer_postal_code
         data_type: varchar
-        description: ""
 
       - name: date_insurer_received_bill
         data_type: date
-        description: ""
 
       - name: date_insurer_paid_bill
         data_type: date
-        description: ""
 
       - name: facility_fein
         data_type: varchar
-        description: ""
 
       - name: facility_name
         data_type: varchar
-        description: ""
 
       - name: facility_address
         data_type: varchar
-        description: ""
 
       - name: facility_city
         data_type: varchar
-        description: ""
 
       - name: facility_state_code
         data_type: varchar
-        description: ""
 
       - name: facility_postal_code
         data_type: varchar
-        description: ""
 
       - name: facility_country_code
         data_type: varchar
-        description: ""
 
       - name: employer_fein
         data_type: varchar
-        description: ""
 
       - name: employer_physical_city
         data_type: varchar
-        description: ""
 
       - name: employer_physical_state_code
         data_type: varchar
-        description: ""
 
       - name: employer_physical_postal
         data_type: varchar
-        description: ""
 
       - name: billing_provider_fein
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_fein
         data_type: varchar
-        description: ""
 
       - name: referring_provider_fein
         data_type: varchar
-        description: ""
 
       - name: billing_provider_first_name
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_first_name
         data_type: varchar
-        description: ""
 
       - name: referring_provider_first_name
         data_type: varchar
-        description: ""
 
       - name: billing_provider_last_name
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_last_name
         data_type: varchar
-        description: ""
 
       - name: referring_provider_last_name
         data_type: varchar
-        description: ""
 
       - name: billing_provider_address
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_address
         data_type: varchar
-        description: ""
 
       - name: billing_provider_city
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_city
         data_type: varchar
-        description: ""
 
       - name: billing_provider_state_code
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_state
         data_type: varchar
-        description: ""
 
       - name: billing_provider_postal_code
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_postal
         data_type: varchar
-        description: ""
 
       - name: billing_provider_country
         data_type: varchar
-        description: ""
 
       - name: rendering_bill_provider_country_code
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_city
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_state_code
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_postal_code
         data_type: varchar
-        description: ""
 
       - name: employee_mailing_country
         data_type: varchar
-        description: ""
 
       - name: employee_date_of_birth
         data_type: date
-        description: ""
 
       - name: employee_gender_code
         data_type: varchar
-        description: ""
 
       - name: employee_marital_status_code
         data_type: varchar
-        description: ""
 
       - name: employee_date_of_injury
         data_type: date
-        description: ""
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
   - name: stg_prof_billing_detail
     description: ""
     columns:
       - name: bill_detail_id
         data_type: varchar
-        description: ""
         tests:
           - not_null
           - unique
+
       - name: bill_id
         data_type: varchar
-        description: ""
 
       - name: bill_selection_date
         data_type: date
-        description: ""
 
       - name: line_number
         data_type: varchar
-        description: ""
 
       - name: total_amount_paid_per_line
         data_type: number
-        description: ""
 
       - name: total_charge_per_line
         data_type: number
-        description: ""
 
       - name: days_units_billed
         data_type: number
-        description: ""
 
       - name: days_units_paid
         data_type: number
-        description: ""
 
       - name: days_units_code
         data_type: varchar
-        description: ""
 
       - name: service_line_from_date
         data_type: date
-        description: ""
 
       - name: service_line_to_date
         data_type: date
-        description: ""
 
       - name: treatment_line_authorization_number
         data_type: varchar
-        description: ""
 
       - name: hcpcs_line_procedure_billed
         data_type: varchar
-        description: ""
 
       - name: hcpcs_line_procedure_paid
         data_type: varchar
-        description: ""
 
       - name: procedure_description
         data_type: varchar
-        description: ""
 
       - name: transformed_timestamp
         data_type: timestamp_ltz
-        description: ""
