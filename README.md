@@ -15,6 +15,9 @@ The data for each of these billing services are further seperated into a header 
 * [Fivetran](https://www.fivetran.com/) - Extracts and Loads data from Google drive into Snowflake
 * [Snowflake](https://www.snowflake.com/en/) - Act as our Data Warehouse
 * [dbt](https://www.getdbt.com/) - Transforms raw data from Snowflake and constructs Data Warehouse Layers
+
+## Architecture
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_architecture_diagram.png)
   
 
 
