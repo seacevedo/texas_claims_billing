@@ -39,11 +39,13 @@ We can further expand the above Bus Matrix to describe the fact tables that will
 
 ### Conceptual Model
 
-We begin by outling the conceptual data model. As described before, the dimensions of the Star schema are Employee, Provider, Date, Facility, Service, Employer, Insurer. The only fact table we will have in our model is the fct_claims_billing table, which will have a relationship with each of the dimensional tables.
+We begin by outling the conceptual data model. As described before, the dimensions of the Star schema are Employee, Provider, Date, Facility, Service, Employer, Insurer. The only fact table we will have in our model is the fct_claims_billing table, which will have a relationship with each of the dimension tables.
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/conceptual_model_texas_claims.png)
 
 ### Logical Model
+
+We now extend the previous conceptual data model by adding the cardinality of the relationships between the dimension and fact tables, as well as define all of the necessary columns associated with each entity. Each dimension table has a one to many relationship with the fact table, meaning with that each dimension can be associated with multiple facts.
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/logical_model_texas_claims.png)
 
