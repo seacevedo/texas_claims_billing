@@ -11,10 +11,10 @@ The data for each of these billing services are further seperated into a header 
 
 ## Technology Stack
 
-* (Google Drive)[https://www.google.com/drive/] - Staging area where data is uploaded to prepare for transfer to Data Warehouse
-* (Fivetran)[https://www.fivetran.com/] - Extracts and Loads data from Google drive into Snowflake
-* (Snowflake)[https://www.snowflake.com/en/] - Act as our Data Warehouse
-* (dbt)[https://www.getdbt.com/] - Transforms raw data from Snowflake and constructs Data Warehouse Layers
+* [Google Drive](https://www.google.com/drive/) - Staging area where data is uploaded to prepare for transfer to Data Warehouse
+* [Fivetran](https://www.fivetran.com/) - Extracts and Loads data from Google drive into Snowflake
+* [Snowflake](https://www.snowflake.com/en/) - Act as our Data Warehouse
+* [dbt](https://www.getdbt.com/) - Transforms raw data from Snowflake and constructs Data Warehouse Layers
   
 
 
