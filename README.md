@@ -43,7 +43,8 @@ We begin by outling the conceptual data model. As described before, the dimensio
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/conceptual_model_texas_claims.png)
 
+### Logical Model
 
-
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/logical_model_texas_claims.png)
 
 
