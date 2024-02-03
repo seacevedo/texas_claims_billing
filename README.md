@@ -25,10 +25,19 @@ The data for each of these billing services are further seperated into a header 
 
 ## Data Model
 
-# Requirements Gathering
+### Requirements Gathering
 
 To understand what dimensions we would need to create an Star schems that is appropriate for our dataset, we first outlined a list of business processes that would involve certain dimensions that would be needed to generate analytical reports. This can be summarized in the following Bus Matrix, where the columns denote the entities and the rows are the business processes of interest:
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_bus_matrix.png)
 
-From this matrix, it is clear that we would need the follwing dimensions for our business needs: Employee, Provider, Date, Facility, Service, Employer, Insurer. To simplify things, we will focus our attention to the first two processes: Claims Billing Overview and Clinical Outcomes, to generate two data marts for our reporting layer.
+From this matrix, it is clear that we would need the follwing dimensions for our business needs: Employee, Provider, Date, Facility, Service, Employer, Insurer. To simplify things, we will focus our attention to the first two processes: Claims Billing Overview and Clinical Outcomes, to generate two data marts for our reporting layer. 
+
+We can further expand the above Bus Matrix to describe the fact tables that will be necessary to describe each business processes, as well their respective grain. Both the Claims Billing Overview and Clinical Outcomes will share the fct_claims_billing table. The granularity for these processes will be transactional: the Claims Billing Overview business process will require a grain of one row per line within a bill, while the Clinical Outcomes process will need a grain of one row per procedure perfored on an employee. This is summarized in the following Bus Matrix:
+
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_bus_matrix_detailed.png)
+
+
+
+
+
