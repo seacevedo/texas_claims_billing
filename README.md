@@ -21,6 +21,14 @@ The data for each of these billing services are further seperated into a header 
 
 * Data from the Texas open data portal is downloaded and dumped into Google drive as Google sheets. This data corresponds to billing claims made within the month of October 2023. Fivetran extracts the data from Google drive and loads it into Snowflake.
 * Raw data is dumped into Snowflake as a database created by Fivetran. Within the database, four new Schemas are created using the corresponding CSV files: INST_BILLING_HEADER, INST_BILLING_DETAIL, PROF_BILLING_HEADER, and PROF_BILLING_DETAIL
-* dbt then is used perform tranformations on the loaded data. The raw data is used to create staging layer, where each column is cast to the appropriate data type. Data from the staging layer is then used to produce the Data Warehouse layer, where the data is modeled as a Star schema and contains the following tables: dim_date, dim_employee, dim_employer, dim_facility, dim_insurer, dim_provider, dim_service, and fct_claims_billing. Finally, we use the data from the newly constructed Data Warehouse layer to create two data marts in One Big Table (OBT) format: obt_claims_billing and obt_clinical_outcomes. 
+* dbt then is used perform tranformations on the loaded data. The raw data is used to create staging layer, where each column is cast to the appropriate data type. Data from the staging layer is then used to produce the Data Warehouse layer, where the data is modeled as a Star schema and contains the following tables: dim_date, dim_employee, dim_employer, dim_facility, dim_insurer, dim_provider, dim_service, and fct_claims_billing. Finally, we use the data from the newly constructed Data Warehouse layer to create two data marts in One Big Table (OBT) format: obt_claims_billing and obt_clinical_outcomes.
 
+## Data Model
 
+# Requirements Gathering
+
+To understand what dimensions we would need to create an Star schems that is appropriate for our dataset, we first outlined a list of business processes that would involve certain dimensions that would be needed to generate analytical reports. This can be summarized in the following Bus Matrix, where the columns denote the entities and the rows are the business processes of interest:
+
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_bus_matrix.png)
+
+From this matrix, it is clear that we would need the follwing dimensions for our business needs: Employee, Provider, Date, Facility, Service, Employer, Insurer. To simplify things, we will focus our attention to the first two processes: Claims Billing Overview and Clinical Outcomes, to generate two data marts for our reporting layer.
