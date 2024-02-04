@@ -57,7 +57,7 @@ We continue to add layers to our existing data model. This time, we detail the d
 
 ## dbt Implementation
 
-We now describe the resulting dbt implementation, which shows in detail how we implemented our components in our Data Warehouse Layers. The following figure gives an overview of the Lineage graph.
+We now describe the resulting dbt implementation, and outline in detail how we implemented our components in our Data Warehouse Layers. The following figure gives an overview of the Lineage graph.
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/dbt_lineage_graph.png)
 
@@ -76,4 +76,24 @@ To help make our final data models more readable, we seperate out some of our lo
 * `int_detail_union`: Derived from the `stg_inst_billing_detail` and `stg_prof_billing_detail` models. We perform a union join on both models and select only unique rows.
 * `int_header_union`: Derived from the `stg_inst_billing_header` and `stg_prof_billing_header` models. We perform a union join on both models and select only unique rows.
 * `int_provider_consolidate`: Solely derived from `int_header_union`. In this dataset, three types of provider are present: `billing` (submits insurance claims for reimbursement), `rendering` (individual that renders the m edical service, usually some sort of doctor), and `referring` (person who directed the patient to the rendering provider). Here we consolidate the data from all three providers by seperating it out into Common Table Expressions (CTEs) and performing a union join on all three CTEs, selecting only unique rows.
+
+We will then turn our attention to our Data Warehouse Layer, where we will finally implement our Star Schema outlined above. It contains eight data models, each corresponding to the tables we described in our data model:
+
+#### Data Warehouse Layer
+
+* `dim_date`: Derived from `int_detail_union`. Unique dates are selected and data like month, day, quarter, etc are extracted from each date.
+* `dim_employee`: Derived from `int_header_union`. The model is built by selecting only columns relating to employee data. 
+* `dim_employer`: Derived from `int_header_union`. The model is built by selecting only columns relating to employer data. 
+* `dim_facility`: Derived from `int_header_union`. The model is built by selecting only columns relating to medical facility data. 
+* `dim_insurer`: Derived from `int_header_union`. The model is built by selecting only columns relating to insurer data. 
+* `dim_provider`: Derived from `int_provider_consolidate`. The model is built by selecting only columns relating to provider data. 
+* `dim_service`: Derived from `int_header_union` and `int_detail_union`. The model is built by creating CTEs of both of these models and left join on them. Only unique rows are then selected.
+* `fct_claims_billing`: Derived from `int_header_union`, `int_detail_union`, and `int_provider_consolidate`. The model is built by creating CTEs of all three models and performing left joins on them.
+
+Finally, we will describe our Data Marts layer, which can be used for reporting purposes. As mentioned previosuly, we will focus on developing data marts for two business processes: `Claims Billing Overview` and `Clinical Outcomes`.
+
+#### Data Marts Layer
+
+* `obt_claims_billing`: Derived from `dim_insurer`, `dim_date`, and `fct_claims_billing`. We first perform an inner join on all three tables, and select only unique rows. We then redefine the grain of our resulting table by summing the total bill charge amount, payment amount, days charged, and days paid for each day.
+* `obt_clinical_outcomes`: Derived from `dim_date`, `dim_employee`, `dim_facility`, `dim_provider`, `dim_service`, and `fct_claims_billing`. The model is built by performing and inner join on all three tables. Unlike `obt_claims_billing` the grain is not redefined: rather it remains the same as `fct_claims_billing`, where each row corresponds to one line item within a bill. In this case you can think of the grain as a single procedure listed within the line item of a bill.
 
