@@ -1,4 +1,4 @@
--- Derived from the INST_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type.
+-- Derived from the INST_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type and dates are properly formatted.
 
 with inst_billing_header as (
     select 
