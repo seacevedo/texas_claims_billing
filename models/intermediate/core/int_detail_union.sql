@@ -1,3 +1,5 @@
+-- Derived from the stg_inst_billing_detail and stg_prof_billing_detail models. We perform a union join on both models and select only unique rows.
+
 with inst_billing_detail as (
     select * from {{ref('stg_inst_billing_detail')}}
 ),
