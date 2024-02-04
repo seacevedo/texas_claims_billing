@@ -55,8 +55,18 @@ We continue to add layers to our existing data model. This time, we detail the d
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/physical_model_texas_claims.png)
 
-## dbt Lineage Graph
+## dbt Implementation
+
+We now describe the resulting dbt implementation, which shows in detail how we implemented our components in our Data Warehouse Layers. The following figure gives an overview of the Lineage graph.
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/dbt_lineage_graph.png)
+
+We will outline each model shown in the above Lineage graph. First we describe our staging models:
+
+#### Staging Layer
+* stg_inst_billing_header: Derived from the INST_BILLING_HEADER source table. 
+* stg_inst_billing_detail:
+* stg_prof_billing_header:
+* stg_prof_billing_detail:
 
 
