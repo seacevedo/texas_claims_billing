@@ -64,9 +64,7 @@ We now describe the resulting dbt implementation, which shows in detail how we i
 We will outline each model shown in the above Lineage graph. First we describe our staging models:
 
 #### Staging Layer
-* stg_inst_billing_header: Derived from the INST_BILLING_HEADER source table. 
-* stg_inst_billing_detail:
-* stg_prof_billing_header:
-* stg_prof_billing_detail:
-
-
+* stg_inst_billing_header: Derived from the INST_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
+* stg_inst_billing_detail: Derived from the INST_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
+* stg_prof_billing_header: Derived from the PROF_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
+* stg_prof_billing_detail: Derived from the PROF_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
