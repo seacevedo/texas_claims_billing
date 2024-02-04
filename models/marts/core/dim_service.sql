@@ -1,3 +1,5 @@
+-- Derived from int_header_union and int_detail_union. The model is built by creating CTEs of both of these models and left join on them. Only unique rows are then selected. A unique id is produced by hashing all columns.
+
 with detail as (
     select 
     BILL_ID,
