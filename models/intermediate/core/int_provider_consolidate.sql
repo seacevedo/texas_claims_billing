@@ -1,3 +1,7 @@
+/* Solely derived from int_header_union. In this dataset, three types of provider are present: billing (submits insurance claims for reimbursement), 
+rendering (individual that renders the m edical service, usually some sort of doctor), and referring (person who directed the patient to the rendering provider). 
+Here we consolidate the data from all three providers by seperating it out into Common Table Expressions (CTEs) and performing a union join on all three CTEs, selecting only unique rows. */
+
 with billing_provider as (
     select
     BILL_ID,
