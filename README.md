@@ -55,4 +55,8 @@ We continue to add layers to our existing data model. This time, we detail the d
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/physical_model_texas_claims.png)
 
+## dbt Lineage Graph
+
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/dbt_lineage_graph.png)
+
 
