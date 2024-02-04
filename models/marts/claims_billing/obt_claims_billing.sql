@@ -1,3 +1,6 @@
+/* Derived from dim_insurer, dim_date, and fct_claims_billing. We first perform an inner join on all three tables, and select only unique rows. 
+We then redefine the grain of our resulting table by summing the total bill charge amount, payment amount, days charged, and days paid for each day. */
+
 with joined_tbl as (
     select 
     BILL_DETAIL_ID,
