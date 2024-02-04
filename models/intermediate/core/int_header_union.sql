@@ -1,3 +1,5 @@
+-- Derived from the stg_inst_billing_header and stg_prof_billing_header models. We perform a union join on both models and select only unique rows.
+
 with prof_billing_header as (
     select 
     BILL_ID,
