@@ -51,6 +51,8 @@ We now extend the previous conceptual data model by adding the cardinality of th
 
 ### Physical Model
 
+We continue to add layers to our existing data model. This time, we detail the data types for each column in every table. This is our final data model and what we will implement in Snowflake.
+
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/physical_model_texas_claims.png)
 
 
