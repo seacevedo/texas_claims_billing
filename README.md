@@ -67,4 +67,13 @@ We will outline each model shown in the above Lineage graph. First we describe o
 * `stg_inst_billing_header`: Derived from the INST_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
 * `stg_inst_billing_detail`: Derived from the INST_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
 * `stg_prof_billing_header`: Derived from the PROF_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
-* `stg_prof_billing_detail`: Derived from the PROF_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
+* `stg_prof_billing_detail`: Derived from the PROF_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type.
+
+To help make our final data models more readable, we seperate out some of our logic into three intermediate models:
+
+#### Intermediate Layer
+
+* `int_detail_union`: Derived from the `stg_inst_billing_detail` and `stg_prof_billing_detail` models. We perform a union join on both models and select only unique rows.
+* `int_header_union`: Derived from the `stg_inst_billing_header` and `stg_prof_billing_header` models. We perform a union join on both models and select only unique rows.
+* `int_provider_consolidate`: Solely derived from `int_header_union`. In this dataset, three types of provider are present: `billing` (submits insurance claims for reimbursement), `rendering` (individual that renders the m edical service, usually some sort of doctor), and `referring` (person who directed the patient to the rendering provider). Here we consolidate the data from all three providers by seperating it out into Common Table Expressions (CTEs) and performing a union join on all three CTEs, selecting only unique rows.
+
