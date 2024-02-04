@@ -1,3 +1,5 @@
+-- Derived from the PROF_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type.
+
 with prof_billing_detail as (
     select 
     cast(BILL_DETAIL_ID as varchar) as BILL_DETAIL_ID,
