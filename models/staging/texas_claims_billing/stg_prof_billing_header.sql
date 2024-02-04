@@ -1,3 +1,5 @@
+-- Derived from the PROF_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type and dates are properly formatted.
+
 with prof_billing_header as (
     select 
     cast(BILL_ID as varchar) as BILL_ID,
