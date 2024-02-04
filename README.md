@@ -21,7 +21,7 @@ The data for each of these billing services are further seperated into a header 
 
 * Data from the Texas open data portal is downloaded and dumped into Google drive as Google sheets. This data corresponds to billing claims made within the month of October 2023. Fivetran extracts the data from Google drive and loads it into Snowflake.
 * Raw data is dumped into Snowflake as a database created by Fivetran. Within the database, four new Schemas are created using the corresponding CSV files: INST_BILLING_HEADER, INST_BILLING_DETAIL, PROF_BILLING_HEADER, and PROF_BILLING_DETAIL
-* dbt then is used perform tranformations on the loaded data. The raw data is used to create staging layer, where each column is cast to the appropriate data type. Data from the staging layer is then used to produce the Data Warehouse layer, where the data is modeled as a Star schema and contains the following tables: dim_date, dim_employee, dim_employer, dim_facility, dim_insurer, dim_provider, dim_service, and fct_claims_billing. Finally, we use the data from the newly constructed Data Warehouse layer to create two data marts in One Big Table (OBT) format: obt_claims_billing and obt_clinical_outcomes.
+* dbt then is used perform tranformations on the loaded data. The raw data is used to create staging layer, where each column is cast to the appropriate data type. Data from the staging layer is then used to produce the Data Warehouse layer, where the data is modeled as a Star schema and contains the following tables: `dim_date`, `dim_employee`, `dim_employer`, `dim_facility`, `dim_insurer`, `dim_provider`, `dim_service`, and `fct_claims_billing`. Finally, we use the data from the newly constructed Data Warehouse layer to create two data marts in One Big Table (OBT) format: `obt_claims_billing` and `obt_clinical_outcomes`.
 
 ## Data Model
 
@@ -39,7 +39,7 @@ We can further expand the above Bus Matrix to describe the fact tables that will
 
 ### Conceptual Model
 
-We begin by outling the conceptual data model. As described before, the dimensions of the Star schema are Employee, Provider, Date, Facility, Service, Employer, Insurer. The only fact table we will have in our model is the fct_claims_billing table, which will have a relationship with each of the dimension tables.
+We begin by outling the conceptual data model. As described before, the dimensions of the Star schema are  `Employee`, `Provider`, `Date`, `Facility`, `Service`, `Employer`, `Insurer`. The only fact table we will have in our model is the `fct_claims_billing table`, which will have a relationship with each of the dimension tables.
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/conceptual_model_texas_claims.png)
 
@@ -64,7 +64,7 @@ We now describe the resulting dbt implementation, which shows in detail how we i
 We will outline each model shown in the above Lineage graph. First we describe our staging models:
 
 #### Staging Layer
-* stg_inst_billing_header: Derived from the INST_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
-* stg_inst_billing_detail: Derived from the INST_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
-* stg_prof_billing_header: Derived from the PROF_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
-* stg_prof_billing_detail: Derived from the PROF_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
+* `stg_inst_billing_header`: Derived from the INST_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
+* `stg_inst_billing_detail`: Derived from the INST_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
+* `stg_prof_billing_header`: Derived from the PROF_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type. 
+* `stg_prof_billing_detail`: Derived from the PROF_BILLING_DETAIL source table. Type casting is applied where columns are cast to appropriate data type. 
