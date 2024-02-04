@@ -1,4 +1,4 @@
--- Check if there are any duplicates in the columns below
+-- Check if duplicate rows exist in PROF_BILLING_DETAIL
 
 SELECT 
 BILL_DETAIL_ID,
