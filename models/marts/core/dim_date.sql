@@ -1,3 +1,6 @@
+-- Derived from int_detail_union. Unique dates are selected and data like month, day, quarter, etc are extracted from each date.
+
+
 with unique_dates as (
     select distinct BILL_SELECTION_DATE from {{ ref('int_detail_union') }}
 )
