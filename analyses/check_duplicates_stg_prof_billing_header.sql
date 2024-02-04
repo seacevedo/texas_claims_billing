@@ -1,3 +1,5 @@
+-- Check if duplicate rows exist in PROF_BILLING_HEADER
+
 SELECT 
 BILL_ID,
 COUNT(*) as num_instances,
