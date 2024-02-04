@@ -1,3 +1,5 @@
+-- Check if there are any duplicates in the columns below
+
 SELECT 
 BILL_DETAIL_ID,
 COUNT(*) as num_instances,
