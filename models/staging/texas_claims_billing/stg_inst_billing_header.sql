@@ -1,3 +1,5 @@
+-- Derived from the INST_BILLING_HEADER source table. Type casting is applied where columns are cast to appropriate data type.
+
 with inst_billing_header as (
     select 
     cast(BILL_ID as varchar) as BILL_ID,
