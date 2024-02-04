@@ -1,3 +1,7 @@
+/* Derived from dim_date, dim_employee, dim_facility, dim_provider, dim_service, and fct_claims_billing. The model is built by performing and inner join on all three tables. 
+Unlike obt_claims_billing the grain is not redefined: rather it remains the same as fct_claims_billing, where each row corresponds to one line item within a bill. 
+In this case you can think of the grain as a single procedure listed within the line item of a bill. */
+
 with rendering_provider as (
     select * 
     from {{ ref('dim_provider') }}
