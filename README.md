@@ -49,4 +49,8 @@ We now extend the previous conceptual data model by adding the cardinality of th
 
 ![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/logical_model_texas_claims.png)
 
+### Physical Model
+
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/physical_model_texas_claims.png)
+
 
