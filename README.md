@@ -41,6 +41,7 @@ We can further expand the above Bus Matrix to describe the fact tables that will
 
 We begin by outling the conceptual data model. As described before, the dimensions of the Star schema are  `Employee`, `Provider`, `Date`, `Facility`, `Service`, `Employer`, `Insurer`. The only fact table we will have in our model is the `fct_claims_billing table`, which will have a relationship with each of the dimension tables.
 
+
 <p align="center">
   <img src="https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_concept_model.png">
 </p>
