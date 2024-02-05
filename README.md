@@ -47,13 +47,13 @@ We begin by outling the conceptual data model. As described before, the dimensio
 
 We now extend the previous conceptual data model by adding the cardinality of the relationships between the dimension and fact tables, as well as define all of the necessary columns associated with each entity. Each dimension table has a one to many relationship with the fact table, meaning with that each dimension can be associated with multiple facts.
 
-![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/logical_model_texas_claims.png)
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_logic_model.png)
 
 ### Physical Model
 
 We continue to add layers to our existing data model. This time, we detail the data types for each column in every table. This is our final data model and what we will implement in Snowflake.
 
-![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/physical_model_texas_claims.png)
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_physical_model.png)
 
 ## dbt Implementation
 
