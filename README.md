@@ -102,11 +102,13 @@ Finally, we will describe our Data Marts layer, which can be used for reporting 
 
 ## Power BI Dashboard
 
-<iframe title="texas_claims_billing" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNDY1N2ZkZjAtM2M5Zi00NmM4LWEyOWItZTEwMDM1ZDZmYjcxIiwidCI6IjNjNDIzNmIwLTE5ZDctNDNhMy1iMmQ2LTUxN2RjYTU5ZjY4ZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_billing_dashboard.png)
+
+Link: https://app.powerbi.com/view?r=eyJrIjoiNDY1N2ZkZjAtM2M5Zi00NmM4LWEyOWItZTEwMDM1ZDZmYjcxIiwidCI6IjNjNDIzNmIwLTE5ZDctNDNhMy1iMmQ2LTUxN2RjYTU5ZjY4ZSJ9
 
 ## Next Steps
 
-The next logical step in this project would be to use the resulting models in the Data Marts layer to visualize the data in a Business Intelligence tool, such as Power BI, Tableau, Google Looker Studio, Lightdash, etc. Other possible next steps in this project is to construct the data marts for each of the reamining business processes we did not consider in our dbt implementation. 
+Other possible next steps in this project is to construct the data marts for each of the reamining business processes we did not consider in our dbt implementation. 
 
 ## Resources 
 
