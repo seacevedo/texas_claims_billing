@@ -100,6 +100,10 @@ Finally, we will describe our Data Marts layer, which can be used for reporting 
 * `obt_claims_billing`: Derived from `dim_insurer`, `dim_date`, and `fct_claims_billing`. We first perform an inner join on all three tables, and select only unique rows. We then redefine the grain of our resulting table by summing the total bill charge amount, payment amount, days charged, and days paid for each day.
 * `obt_clinical_outcomes`: Derived from `dim_date`, `dim_employee`, `dim_facility`, `dim_provider`, `dim_service`, and `fct_claims_billing`. The model is built by performing and inner join on all three tables. Unlike `obt_claims_billing` the grain is not redefined: rather it remains the same as `fct_claims_billing`, where each row corresponds to one line item within a bill. In this case you can think of the grain as a single procedure listed within the line item of a bill.
 
+## Power BI Dashboard
+
+<iframe title="texas_claims_billing" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNDY1N2ZkZjAtM2M5Zi00NmM4LWEyOWItZTEwMDM1ZDZmYjcxIiwidCI6IjNjNDIzNmIwLTE5ZDctNDNhMy1iMmQ2LTUxN2RjYTU5ZjY4ZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+
 ## Next Steps
 
 The next logical step in this project would be to use the resulting models in the Data Marts layer to visualize the data in a Business Intelligence tool, such as Power BI, Tableau, Google Looker Studio, Lightdash, etc. Other possible next steps in this project is to construct the data marts for each of the reamining business processes we did not consider in our dbt implementation. 
