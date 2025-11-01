@@ -102,7 +102,7 @@ Finally, we will describe our Data Marts layer, which can be used for reporting 
 
 ## Power BI Dashboard
 
-![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_billing_dashboard.png)
+![alt_text](https://github.com/seacevedo/texas_claims_billing/blob/main/assets/texas_claims_billing_dashboard_1.png)
 
 Link: https://app.powerbi.com/view?r=eyJrIjoiNDY1N2ZkZjAtM2M5Zi00NmM4LWEyOWItZTEwMDM1ZDZmYjcxIiwidCI6IjNjNDIzNmIwLTE5ZDctNDNhMy1iMmQ2LTUxN2RjYTU5ZjY4ZSJ9
 
